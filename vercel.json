@@ -5,8 +5,8 @@
         "src": "Makefile",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "static-site",
-          "command": "make export"
+          "buildCommand": "make export",
+          "distDir":      "static-site"
         }
       }
     ]
