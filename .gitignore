@@ -1,0 +1,25 @@
+# Static export directory
+/static-site/
+
+# WordPress core and config files (if you’re only tracking your custom code)
+/wp-admin/
+/wp-includes/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backups/
+/wp-content/backup-db/
+/*.sql
+
+# Composer and Node modules
+/vendor/
+/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+*.swp
+*.swo
+.idea/
+.vscode/

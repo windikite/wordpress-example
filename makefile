@@ -1,20 +1,16 @@
-# ─── User settings ───────────────────────────────────────────────────────────
+# ─── Configuration ─────────────────────────────────────────
 GITHUB_USER ?= windikite
-
-RAW_NAME    := $(shell basename "$(shell git rev-parse --show-toplevel 2>/dev/null)")
-REPO_NAME   := $(shell echo $(RAW_NAME) \
-                    | tr ' ' '-' \
-                    | tr '[:upper:]' '[:lower:]')
+REPO_NAME   := $(notdir $(CURDIR))
 BRANCH      := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)
+WP_URL      := http://localhost:8080
 
-# ─── Export & push ────────────────────────────────────────────────────────────
+# ─── Export ────────────────────────────────────────────────
 .PHONY: export
 export:
 	@echo "→ wiping static-site/"
-	@rm -rf static-site
-
+	rm -rf static-site
 	@echo "→ exporting via wget…"
-	@wget \
+	wget \
 	  --mirror \
 	  --adjust-extension \
 	  --convert-links \
@@ -24,32 +20,27 @@ export:
 	  --cut-dirs=1 \
 	  --reject "xmlrpc.php*" \
 	  --directory-prefix=static-site \
-	  http://localhost:8080/
+	  $(WP_URL)
 
+# ─── Deploy ────────────────────────────────────────────────
+# 1. stage & commit everything you’ve changed locally (WP code, Makefile, etc.)
+# 2. ensure GitHub repo exists (over HTTPS)
+# 3. push your current branch up
+.PHONY: deploy
+deploy:
 	@echo "→ staging all changes"
-	@git add -A
-
+	git add -A
 	@echo "→ committing"
-	@git commit -m "chore: update static export" || echo "↻ nothing to commit"
-
-	@echo "→ creating GitHub repo (if needed) & setting remote→HTTPS"
-	@gh repo create $(GITHUB_USER)/$(REPO_NAME) \
+	git commit -m "chore: deploy on $$(date +'%Y-%m-%d %H:%M:%S')" || echo "↻ nothing to commit"
+	@echo "→ creating GitHub repo if needed"
+	gh repo create $(GITHUB_USER)/$(REPO_NAME) \
 	  --public \
 	  --source=. \
 	  --remote=origin \
-	  --push \
 	  --disable-wiki \
 	  --disable-issues \
-	  -y || true
-
-	# force origin to HTTPS so pushes never use SSH:
-	@echo "→ resetting origin to https://github.com/$(GITHUB_USER)/$(REPO_NAME).git"
-	@git remote remove origin 2>/dev/null || true
-	@git remote add    origin https://github.com/$(GITHUB_USER)/$(REPO_NAME).git
-
-	@echo "→ pushing branch '$(BRANCH)'"
-	@git push -u origin $(BRANCH)
-
-# ─── One-step deploy ──────────────────────────────────────────────────────────
-.PHONY: deploy
-deploy: export
+	  --confirm || true
+	@echo "→ forcing remote to HTTPS"
+	git remote set-url origin https://github.com/$(GITHUB_USER)/$(REPO_NAME).git
+	@echo "→ pushing branch '$(BRANCH)' to origin"
+	git push -u origin $(BRANCH)
