@@ -1,15 +1,20 @@
-# ─── Configuration ─────────────────────────────────────────
+# ─── Configuration ───
 GITHUB_USER ?= windikite
-REPO_NAME   := $(notdir $(CURDIR))
-BRANCH      := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)
-WP_URL      := http://localhost:8080
 
-# ─── Export ────────────────────────────────────────────────
-.PHONY: export
+# Slugify current folder name (lowercase + hyphens)
+REPO_NAME   := $(shell basename "$(CURDIR)" \
+                 | tr '[:upper:]' '[:lower:]' \
+                 | sed 's/[^a-z0-9]/-/g')
+
+REMOTE_URL  := https://github.com/$(GITHUB_USER)/$(REPO_NAME).git
+BRANCH      := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)
+
+.PHONY: export deploy
+
 export:
-	@echo "→ wiping static-site/"
+	@echo "→ wiping old export"
 	rm -rf static-site
-	@echo "→ exporting via wget…"
+	@echo "→ exporting via wget"
 	wget \
 	  --mirror \
 	  --adjust-extension \
@@ -20,13 +25,8 @@ export:
 	  --cut-dirs=1 \
 	  --reject "xmlrpc.php*" \
 	  --directory-prefix=static-site \
-	  $(WP_URL)
+	  http://localhost:8080/
 
-# ─── Deploy ────────────────────────────────────────────────
-# 1. stage & commit everything you’ve changed locally (WP code, Makefile, etc.)
-# 2. ensure GitHub repo exists (over HTTPS)
-# 3. push your current branch up
-.PHONY: deploy
 deploy:
 	@echo "→ staging all changes"
 	git add -A
@@ -41,6 +41,6 @@ deploy:
 	  --disable-issues \
 	  --confirm || true
 	@echo "→ forcing remote to HTTPS"
-	git remote set-url origin https://github.com/$(GITHUB_USER)/$(REPO_NAME).git
-	@echo "→ pushing branch '$(BRANCH)' to origin"
+	git remote set-url origin $(REMOTE_URL)
+	@echo "→ pushing to origin/$(BRANCH)"
 	git push -u origin $(BRANCH)
