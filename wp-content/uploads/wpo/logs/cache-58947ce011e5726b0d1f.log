@@ -1,0 +1,48 @@
+[2025-05-07 18:30:38 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:30:38 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:31:42 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:31:43 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:32:24 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:32:24 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:45:54 : INFO] - Full Cache Purge triggered by: plugin activation/deactivation 
+[2025-05-07 18:47:24 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:47:25 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:47:58 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:47:58 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:09 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_imports&p=28 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:49 : INFO] - Cache for URL: http://localhost:8080/?feedzy_imports=etsy has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for URL: http://localhost:8080/?p=29 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for previous post (with URL: http://localhost:8080/?p=1) adjacent to post with id: 29 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for all archives page associated with post_type: post and Title: "Clan Fraser Tulach Ard Je Suis Prest Craig na Dun Dinna Fash Call me Sassenach Outlander Pin Outlander Button Outlander Magnet Keychains by GeektasticCreations" have been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for URL: http://localhost:8080/?p=30 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for previous post (with URL: http://localhost:8080/?p=1) adjacent to post with id: 30 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for all archives page associated with post_type: post and Title: "Slug Club Member Pin Wizard Professor Slug Club Button Wizard Club Magnet Keychain or Pin by GeektasticCreations" have been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for URL: http://localhost:8080/?p=31 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for previous post (with URL: http://localhost:8080/?p=1) adjacent to post with id: 31 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:54 : INFO] - Cache for all archives page associated with post_type: post and Title: "Just a Bunch of Hocus Pocus Charm Bracelet Halloween Bracelet by GeektasticCreations" have been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for URL: http://localhost:8080/?p=32 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for previous post (with URL: http://localhost:8080/?p=1) adjacent to post with id: 32 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for all archives page associated with post_type: post and Title: "Bon Jovi Inspired Charm Bracelet Living on a Prayer Bracelet Rock Band Music Lover Gift Concert Jewelry by GeektasticCreations" have been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for URL: http://localhost:8080/?p=33 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for previous post (with URL: http://localhost:8080/?p=32) adjacent to post with id: 33 has been purged, triggered by action: save_post 
+[2025-05-07 18:49:55 : INFO] - Cache for all archives page associated with post_type: post and Title: "Kindness Sticker Never Be Cruel Never Fail to be Kind Doctor Who 12th Doctor Quote Laptop Sticker by GeektasticCreations" have been purged, triggered by action: save_post 
+[2025-05-07 18:52:47 : INFO] - Cache for URL: http://localhost:8080/?feedzy_imports=etsy has been purged, triggered by action: wp_trash_post 
+[2025-05-07 18:52:47 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_imports&p=28 has been purged, triggered by action: save_post 
+[2025-05-07 18:56:44 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_categories&p=36 has been purged, triggered by action: save_post 
+[2025-05-07 18:58:18 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_categories&p=37 has been purged, triggered by action: save_post 
+[2025-05-07 18:58:44 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_categories&p=37 has been purged, triggered by action: save_post 
+[2025-05-07 18:58:46 : INFO] - Cache for URL: http://localhost:8080/?feedzy_categories=etsy has been purged, triggered by action: save_post 
+[2025-05-07 18:59:41 : INFO] - Cache for URL: http://localhost:8080/?post_type=feedzy_categories&p=38 has been purged, triggered by action: save_post 
+[2025-05-07 19:01:17 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:01:18 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:01:35 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:01:35 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:02:45 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:02:46 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:04:17 : INFO] - Cache for URL: http://localhost:8080/?feedzy_categories=etsy has been purged, triggered by action: save_post 
+[2025-05-07 19:08:46 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:08:48 : INFO] - Cache for URL: http://localhost:8080/?page_id=20 has been purged, triggered by action: save_post 
+[2025-05-07 19:15:37 : INFO] - Full Cache Purge triggered by: plugin activation/deactivation 
+[2025-05-07 19:15:44 : INFO] - Full Cache Purge triggered by: plugin activation/deactivation 
+[2025-05-07 20:58:32 : INFO] - Full Cache Purge triggered by: plugin activation/deactivation 
+[2025-05-07 21:08:45 : INFO] - Full Cache Purge triggered by action: update_option_permalink_structure 
