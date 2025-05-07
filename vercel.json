@@ -1,14 +1,8 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "Makefile",
-        "use": "@vercel/static-build",
-        "config": {
-          "buildCommand": "make export",
-          "distDir":      "static-site"
-        }
-      }
-    ]
+      { "src": "Makefile", "use": "@vercel/static-build" }
+    ],
+    "buildCommand": "make export",
+    "outputDirectory": "static-site"
   }
-  
