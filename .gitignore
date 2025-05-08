@@ -1,5 +1,3 @@
-# Static export directory
-/static-site/
 
 # WordPress core and config files (if you’re only tracking your custom code)
 /wp-admin/

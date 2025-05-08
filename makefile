@@ -8,13 +8,13 @@ REPO_NAME   := $(shell basename "$(CURDIR)" \
 
 REMOTE_URL  := https://github.com/$(GITHUB_USER)/$(REPO_NAME).git
 BRANCH      := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)
-WP_URL 		?= https://your-live-site.com
+URL 		:= http://localhost:8080
 
 .PHONY: export deploy
 export:
 	@echo "→ wiping old export"
 	rm -rf static-site
-	@echo "→ exporting via wget from $(WP_URL)"
+	@echo "→ exporting via wget from $(URL)"
 	wget \
 	  --mirror \
 	  --adjust-extension \
@@ -25,7 +25,7 @@ export:
 	  --cut-dirs=1 \
 	  --reject "xmlrpc.php*" \
 	  --directory-prefix=static-site \
-	  "$(WP_URL)"
+	  "$(URL)"
 
 deploy:
 	@echo "→ staging all changes"
