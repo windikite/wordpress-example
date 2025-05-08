@@ -14,6 +14,7 @@ URL 		:= http://localhost:8080
 export:
 	@echo "→ wiping old export"
 	rm -rf static-site
+
 	@echo "→ exporting via wget"
 	wget \
 	  --mirror \
@@ -29,9 +30,11 @@ export:
 	  --directory-prefix=static-site \
 	  http://localhost:8080/
 
-	@echo "→ stripping any <base href> tags"
+	@echo "→ stripping any <base> tags (case-insensitive)"
 	find static-site -type f -name '*.html' \
-	  -exec sed -i '/<base href=/d' {} +
+	  -exec sed -i -E '/<base [^>]*>/Id' {} +
+
+	@echo "→ done. Your files are in static-site/"
 
 
 deploy:
