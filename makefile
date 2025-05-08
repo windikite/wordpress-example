@@ -23,7 +23,6 @@ export:
 		--page-requisites \
 		--no-parent \
 		--no-host-directories \
-		--cut-dirs=1 \
 		--reject-regex '/wp-json.*|xmlrpc\.php.*|\?p=' \
 		--directory-prefix=static-site \
 		$(URL)/
