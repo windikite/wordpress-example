@@ -1,7 +1,0 @@
-{
-    "version": 2,
-    "installCommand": "apt-get update && apt-get install -y wget",
-    "buildCommand": "make export",
-    "outputDirectory": "static-site"
-  }
-  
