@@ -14,7 +14,6 @@ URL 		:= http://localhost:8080
 export:
 	@echo "→ wiping old export"
 	rm -rf static-site
-
 	@echo "→ exporting via wget"
 	wget \
 	  --mirror \
@@ -24,21 +23,11 @@ export:
 	  --no-parent \
 	  --no-host-directories \
 	  --cut-dirs=1 \
-	  --reject "xmlrpc.php*" \
+	  --accept html,htm \
+	  --reject-regex '/wp-json/.*|.*\?.*' \
+	  --exclude-directories=wp-json \
 	  --directory-prefix=static-site \
 	  http://localhost:8080/
-
-	@echo "→ renaming any files with ‘?’ in their name…"
-	# walk depth-first so we rename children before parents
-	find static-site -depth -name '*\?*' | while read -r file; do \
-	  clean="$${file%%\?*}"; \
-	  mkdir -p "$$(dirname "$$clean")"; \
-	  mv "$$file" "$$clean"; \
-	done
-
-	@echo "→ stripping ?ver=… from HTML links…"
-	find static-site -type f -name '*.html' -exec sed -i \
-	  -E 's#(\<(href|src)=["'\''])[^\?]*/?([^"'\'' ]+)\?ver=[0-9\.]+#\1\3#g' {} +
 
 
 deploy:
