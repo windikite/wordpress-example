@@ -14,7 +14,7 @@ URL 		:= http://localhost:8080
 export:
 	@echo "→ wiping old export"
 	rm -rf static-site
-	@echo "→ exporting via wget from $(URL)"
+	@echo "→ exporting via wget"
 	wget \
 	  --mirror \
 	  --adjust-extension \
@@ -25,7 +25,16 @@ export:
 	  --cut-dirs=1 \
 	  --reject "xmlrpc.php*" \
 	  --directory-prefix=static-site \
-	  "$(URL)"
+	  http://localhost:8080/
+	@echo "→ stripping query-strings from filenames…"
+	@find static-site -type f -name '*\?*' | while read f; do \
+	  new="$${f%%\?*}"; \
+	  mv "$$f" "$$new"; \
+	done
+	@echo "→ cleaning up HTML references…"
+	@find static-site -type f -name '*.html' -exec sed -i \
+	  -E 's#(href|src)="([^"]+)\?ver=[0-9\.]+"#\1="\2"#g' {} +
+
 
 deploy:
 	@echo "→ staging all changes"
