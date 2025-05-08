@@ -13,29 +13,38 @@ URL 		:= http://localhost:8080
 .PHONY: export deploy
 export:
 	@echo "→ wiping old export"
-	@rm -rf static-site
+	rm -rf static-site
 
 	@echo "→ exporting via wget"
-	@wget --mirror \
-	      --adjust-extension \
-	      --convert-links \
-	      --page-requisites \
-	      --no-parent \
-	      --no-host-directories \
-	      --cut-dirs=1 \
-	      --accept html,htm \
-	      --reject-regex '/wp-json/.*|.*\?.*' \
-	      --exclude-directories=wp-json \
-	      --directory-prefix=static-site \
-	      http://localhost:8080/
+	wget \
+	  --mirror \
+	  --adjust-extension \
+	  --convert-links \
+	  --page-requisites \
+	  --no-parent \
+	  --no-host-directories \
+	  --cut-dirs=1 \
+	  --reject-regex '/wp-json.*|xmlrpc\.php.*' \
+	  --directory-prefix=static-site \
+	  http://localhost:8080/
 
-	@echo "→ stripping any <base href> tags"
-	@find static-site -type f -name '*.html' \
-	     -exec sed -i '/<base href=/d' {} +
+	@echo "→ renaming versioned assets (strip ?ver=…)"
+	find static-site -type f -name '*\?ver=*' -print0 | \
+	  xargs -0 -I{} bash -c '\
+	    nf="$$(echo "{}" | sed -E "s/\?ver=[^/]+//")"; \
+	    mv "{}" "$$nf" \
+	  '
 
-	@echo "→ rewriting internal links → root-relative"
-	@find static-site -type f -name '*.html' \
-	     -exec sed -i 's#http://localhost:8080/#/#g' {} +
+	@echo "→ post-processing HTML"
+	# • remove any <base href="…">
+	# • strip all http://localhost:8080 references
+	# • drop any leftover ?ver=… in your HTML links
+	find static-site -type f -name '*.html' -exec sed -i \
+	  -e '/<base href=/d' \
+	  -e 's#http://localhost:8080/##g' \
+	  -e 's#http://localhost:8080##g' \
+	  -e 's/\?ver=[0-9.]*//g' \
+	  {} +
 
 	@echo "✅ export complete → static-site/"
 
