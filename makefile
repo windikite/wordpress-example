@@ -29,6 +29,10 @@ export:
 	  --directory-prefix=static-site \
 	  http://localhost:8080/
 
+	@echo "→ stripping any <base href> tags"
+	find static-site -type f -name '*.html' \
+	  -exec sed -i '/<base href=/d' {} +
+
 
 deploy:
 	@echo "→ staging all changes"
