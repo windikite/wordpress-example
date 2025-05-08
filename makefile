@@ -15,26 +15,30 @@ export:
 	@echo "→ wiping old export"
 	rm -rf static-site
 
-	@echo "→ exporting via wget"
-	wget \
-	  --mirror \
-	  --adjust-extension \
-	  --convert-links \
-	  --page-requisites \
-	  --no-parent \
-	  --no-host-directories \
-	  --cut-dirs=1 \
-	  --accept html,htm \
-	  --reject-regex '/wp-json/.*|.*\?.*' \
-	  --exclude-directories=wp-json \
-	  --directory-prefix=static-site \
-	  http://localhost:8080/
+	@echo "→ mirroring only the public HTML/CSS/JS assets"
+	wget --quiet \
+	     --mirror \
+	     --adjust-extension \
+	     --convert-links \
+	     --page-requisites \
+	     --no-parent \
+	     --domains localhost \
+	     --restrict-file-names=unix \
+	     --accept html,css,js,png,jpg,jpeg,svg,webp,woff,woff2 \
+	     --reject-regex 'wp-json|xmlrpc\.php' \
+	     --cut-dirs=1 \
+	     --directory-prefix=static-site \
+	     http://localhost:8080/
 
-	@echo "→ stripping any <base> tags (case-insensitive)"
+	@echo "→ stripping any stray <base> tags"
 	find static-site -type f -name '*.html' \
 	  -exec sed -i -E '/<base [^>]*>/Id' {} +
 
-	@echo "→ done. Your files are in static-site/"
+	@echo "→ rewriting any leftover localhost URLs to root-relative"
+	find static-site -type f -name '*.html' \
+	  -exec sed -i 's#http://localhost:8080/#/#g' {} +
+
+	@echo "✅ export complete → static-site/"
 
 
 deploy:
